@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Loop & Bloom — Crochet Studio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app-shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="brand">
+      <div class="brand-mark">✿</div>
+
+      <div>
+        <strong>Loop & Bloom</strong>
+        <span>crochet studio</span>
+      </div>
+    </div>
+
+    <div class="project-switcher">
+
+      <label>Current project</label>
+
+      <select id="projectSelect"></select>
+
+      <button class="small-btn" id="newProjectBtn">
+        ＋ New project
+      </button>
+
+    </div>
+
+    <nav>
+
+      <button class="nav-btn active" data-page="home">
+        ⌂ <span>Studio</span>
+      </button>
+
+      <button class="nav-btn" data-page="grid">
+        ▦ <span>Filet grid</span>
+      </button>
+
+      <button class="nav-btn" data-page="notes">
+        ✎ <span>Pattern notes</span>
+      </button>
+
+      <button class="nav-btn" data-page="calendar">
+        ▢ <span>Calendar</span>
+      </button>
+
+      <button class="nav-btn" data-page="design">
+        ♡ <span>Design board</span>
+      </button>
+
+    </nav>
+
+    <div class="save-status" id="saveStatus">
+      ● Saved automatically
+    </div>
+
+  </aside>
+
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- MOBILE HEADER -->
+    <header class="mobile-header">
+
+      <button class="icon-btn" id="mobileMenu">
+        ☰
+      </button>
+
+      <div class="mobile-title">
+        ✿ Loop & Bloom
+      </div>
+
+      <button class="icon-btn" id="mobileProject">
+        ⌄
+      </button>
+
+    </header>
+
+
+    <!-- ================= STUDIO ================= -->
+
+    <section class="page active" id="page-home">
+
+      <div class="page-heading">
+
+        <div>
+
+          <p class="eyebrow">
+            YOUR CREATIVE SPACE
+          </p>
+
+          <h1>
+            Make something lovely.
+          </h1>
+
+          <p class="muted">
+            Keep your rows, time, ideas and finished pieces together.
+          </p>
+
+        </div>
+
+        <button class="primary" id="finishProjectBtn">
+          ✓ Mark project finished
+        </button>
+
+      </div>
+
+
+      <div class="hero-card">
+
+        <div class="hero-copy">
+
+          <span class="pill">
+            CURRENT PROJECT
+          </span>
+
+          <h2 id="heroProjectName">
+            My Crochet Project
+          </h2>
+
+          <p id="heroProjectDesc">
+            A little space for your next handmade thing.
+          </p>
+
+
+          <div class="hero-stats">
+
+            <div>
+              <b id="heroRows">0</b>
+              <span>rows</span>
+            </div>
+
+            <div>
+              <b id="heroTime">00:00:00</b>
+              <span>time</span>
+            </div>
+
+            <div>
+              <b id="heroProgress">0%</b>
+              <span>progress</span>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="yarn-ball">
+          🧶
+        </div>
+
+      </div>
+
+
+      <div class="section-title">
+
+        <h3>
+          Row counter + project timer
+        </h3>
+
+        <span id="timerProjectLabel"></span>
+
+      </div>
+
+
+      <div class="counter-layout">
+
+        <!-- ROW COUNTER -->
+
+        <div class="counter-card">
+
+          <div class="counter-top">
+
+            <button class="circle-btn" id="rowMinus">
+              −
+            </button>
+
+            <div class="row-number">
+
+              <small>ROW</small>
+
+              <strong id="rowValue">
+                0
+              </strong>
+
+            </div>
+
+            <button class="circle-btn" id="rowPlus">
+              +
+            </button>
+
+          </div>
+
+
+          <div class="counter-actions">
+
+            <button class="secondary" id="rowReset">
+              Reset rows
+            </button>
+
+            <button class="primary" id="rowSaveCheckpoint">
+              Save checkpoint
+            </button>
+
+          </div>
+
+
+          <label class="input-label">
+
+            Target rows
+
+            <input
+              id="targetRows"
+              type="number"
+              min="0"
+              placeholder="e.g. 40"
+            >
+
+          </label>
+
+
+          <div class="progress-track">
+            <span id="progressBar"></span>
+          </div>
+
+        </div>
+
+
+        <!-- TIMER -->
+
+        <div class="timer-card">
+
+          <div class="timer-display" id="timerDisplay">
+            00:00:00
+          </div>
+
+          <div class="timer-buttons">
+
+            <button class="primary" id="timerStart">
+              Start
+            </button>
+
+            <button class="secondary" id="timerReset">
+              Reset
+            </button>
+
+          </div>
+
+          <p class="timer-note">
+            The timer keeps its time when you switch pages or projects.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- QUICK LINKS -->
+
+      <div class="quick-grid">
+
+        <button class="quick-card" data-go="grid">
+
+          <span>▦</span>
+
+          <b>Filet grid</b>
+
+          <small>
+            Turn your idea into a stitch chart.
+          </small>
+
+        </button>
+
+
+        <button class="quick-card" data-go="notes">
+
+          <span>✎</span>
+
+          <b>Pattern notes</b>
+
+          <small>
+            Write rows, yarn notes and reminders.
+          </small>
+
+        </button>
+
+
+        <button class="quick-card" data-go="design">
+
+          <span>♡</span>
+
+          <b>Design board</b>
+
+          <small>
+            Sketch your next creation.
+          </small>
+
+        </button>
+
+
+        <button class="quick-card" data-go="calendar">
+
+          <span>▢</span>
+
+          <b>Project calendar</b>
+
+          <small>
+            See when your pieces were finished.
+          </small>
+
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= FILET GRID ================= -->
+
+    <section class="page" id="page-grid">
+
+      <div class="page-heading">
+
+        <div>
+
+          <p class="eyebrow">
+            FILET CROCHET
+          </p>
+
+          <h1>
+            Stitch your chart.
+          </h1>
+
+          <p class="muted">
+            Change the grid size, then tap cells to fill them.
+          </p>
+
+        </div>
+
+
+        <div class="heading-actions">
+
+          <button class="secondary" id="clearGrid">
+            Clear
+          </button>
+
+          <button class="primary" id="downloadGrid">
+            Save chart
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="tool-card grid-tools">
+
+        <label>
+
+          Columns
+
+          <input
+            id="gridCols"
+            type="number"
+            min="1"
+            max="60"
+            value="20"
+          >
+
+        </label>
+
+
+        <label>
+
+          Rows
+
+          <input
+            id="gridRows"
+            type="number"
+            min="1"
+            max="60"
+            value="20"
+          >
+
+        </label>
+
+
+        <button class="secondary" id="resizeGrid">
+          Resize grid
+        </button>
+
+
+        <label class="check-label">
+
+          <input type="checkbox" id="gridLines">
+
+          Bold grid lines
+
+        </label>
+
+      </div>
+
+
+      <div class="grid-wrap">
+
+        <div id="filetGrid" class="filet-grid"></div>
+
+      </div>
+
+
+      <p class="hint">
+        Tap or click squares to toggle filled cells.
+      </p>
+
+    </section>
+
+
+    <!-- ================= NOTES ================= -->
+
+    <section class="page" id="page-notes">
+
+      <div class="page-heading">
+
+        <div>
+
+          <p class="eyebrow">
+            PATTERN WRITING
+          </p>
+
+          <h1>
+            Your pattern notebook.
+          </h1>
+
+          <p class="muted">
+            Write your pattern exactly how you like it.
+          </p>
+
+        </div>
+
+        <span class="saved-badge">
+          Autosaved
+        </span>
+
+      </div>
+
+
+      <div class="notes-layout">
+
+
+        <div class="tool-card note-meta">
+
+          <label>
+
+            Pattern title
+
+            <input
+              id="patternTitle"
+              placeholder="e.g. Strawberry Tote"
+            >
+
+          </label>
+
+
+          <label>
+
+            Yarn + hook
+
+            <input
+              id="yarnInfo"
+              placeholder="e.g. Cotton, 4 mm hook"
+            >
+
+          </label>
+
+
+          <label>
+
+            Difficulty
+
+            <select id="difficulty">
+
+              <option>Beginner</option>
+              <option>Easy</option>
+              <option>Intermediate</option>
+              <option>Advanced</option>
+
+            </select>
+
+          </label>
+
+
+          <label>
+
+            Materials
+
+            <textarea
+              id="materials"
+              placeholder="Yarn, hook, needle, scissors..."
+            ></textarea>
+
+          </label>
+
+        </div>
+
+
+        <div class="tool-card editor-card">
+
+          <div class="editor-toolbar">
+
+            <button data-format="bold">
+              <b>B</b>
+            </button>
+
+            <button data-format="italic">
+              <i>I</i>
+            </button>
+
+            <button data-format="h2">
+              H2
+            </button>
+
+            <button data-format="bullet">
+              • List
+            </button>
+
+          </div>
+
+
+          <textarea
+            id="patternNotes"
+            class="big-editor"
+            placeholder="Start writing your pattern...
+
+Row 1:
+Row 2:
+Row 3:
+
+Notes:
+"
+          ></textarea>
+
+
+          <div class="word-count" id="wordCount">
+            0 words
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= CALENDAR ================= -->
+
+    <section class="page" id="page-calendar">
+
+      <div class="page-heading">
+
+        <div>
+
+          <p class="eyebrow">
+            FINISHED PIECES
+          </p>
+
+          <h1>
+            Project calendar.
+          </h1>
+
+          <p class="muted">
+            Your finished dates and project times.
+          </p>
+
+        </div>
+
+        <button class="primary" id="calendarToday">
+          Today
+        </button>
+
+      </div>
+
+
+      <div class="calendar-card">
+
+        <div class="calendar-nav">
+
+          <button class="circle-btn" id="prevMonth">
+            ‹
+          </button>
+
+          <h2 id="calendarTitle"></h2>
+
+          <button class="circle-btn" id="nextMonth">
+            ›
+          </button>
+
+        </div>
+
+
+        <div class="weekday-row">
+
+          <span>Sun</span>
+          <span>Mon</span>
+          <span>Tue</span>
+          <span>Wed</span>
+          <span>Thu</span>
+          <span>Fri</span>
+          <span>Sat</span>
+
+        </div>
+
+
+        <div class="calendar-grid" id="calendarGrid"></div>
+
+      </div>
+
+
+      <div class="finished-list tool-card">
+
+        <h3>
+          Finished projects
+        </h3>
+
+        <div id="finishedList"></div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= DESIGN ================= -->
+
+    <section class="page" id="page-design">
+
+      <div class="page-heading">
+
+        <div>
+
+          <p class="eyebrow">
+            DESIGN BOARD
+          </p>
+
+          <h1>
+            Draw your idea.
+          </h1>
+
+          <p class="muted">
+            Sketch shapes, motifs and little ideas.
+          </p>
+
+        </div>
+
+
+        <div class="heading-actions">
+
+          <button class="secondary" id="clearDrawing">
+            Clear
+          </button>
+
+          <button class="primary" id="downloadDrawing">
+            Save sketch
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="drawing-card">
+
+        <div class="draw-tools">
+
+          <label>
+
+            Brush
+
+            <input
+              type="range"
+              id="brushSize"
+              min="1"
+              max="24"
+              value="4"
+            >
+
+          </label>
+
+
+          <label>
+
+            Ink
+
+            <input
+              type="color"
+              id="brushColor"
+              value="#6f5363"
+            >
+
+          </label>
+
+
+          <button class="secondary" id="eraserBtn">
+            Eraser
+          </button>
+
+        </div>
+
+
+        <div class="canvas-wrap">
+
+          <canvas id="designCanvas"></canvas>
+
+        </div>
+
+
+        <p class="hint">
+          Draw with your mouse, trackpad, pen or finger.
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+
+<!-- NEW PROJECT MODAL -->
+
+<div class="modal-backdrop" id="projectModal">
+
+  <div class="modal">
+
+    <button class="modal-close" id="closeModal">
+      ×
+    </button>
+
+    <p class="eyebrow">
+      NEW PROJECT
+    </p>
+
+    <h2>
+      What are you making?
+    </h2>
+
+
+    <label>
+
+      Project name
+
+      <input
+        id="newProjectName"
+        placeholder="e.g. Pink cardigan"
+      >
+
+    </label>
+
+
+    <label>
+
+      Little description
+
+      <textarea
+        id="newProjectDesc"
+        placeholder="A short note about your project"
+      ></textarea>
+
+    </label>
+
+
+    <div class="modal-actions">
+
+      <button class="secondary" id="cancelProject">
+        Cancel
+      </button>
+
+      <button class="primary" id="createProject">
+        Create project
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="toast" id="toast">
+  Saved ♡
+</div>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
