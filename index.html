@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stitch & Bloom 4.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon">🧶</div>
+        <div><strong>stitch & bloom</strong><small>your crafty little universe</small></div>
+      </div>
+      <div class="profile-mini">
+        <div class="avatar" id="smallAvatar">🐸</div>
+        <div><strong id="profileName">Crochet Club</strong><small>professional yarn enthusiast</small></div>
+      </div>
+      <nav id="mainNav">
+        <button class="nav-link active" data-page="home">✿ <span>My scrapbook</span></button>
+        <button class="nav-link" data-page="projects">🧵 <span>My projects</span></button>
+        <button class="nav-link" data-page="counter">🔢 <span>Row counter</span></button>
+        <button class="nav-link" data-page="patterns">📒 <span>Pattern maker</span></button>
+        <button class="nav-link" data-page="palette">🎨 <span>Yarn studio</span></button>
+        <button class="nav-link" data-page="grid">▦ <span>Fillet grid</span></button>
+        <button class="nav-link" data-page="tutorials">🪡 <span>Stitch library</span></button>
+        <button class="nav-link" data-page="wishlist">🛍️ <span>Wishlist</span></button>
+        <button class="nav-link" data-page="calendar">📅 <span>Memories calendar</span></button>
+        <button class="nav-link" data-page="settings">⚙️ <span>My little settings</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="tiny-note">made with yarn & a little chaos <span>♡</span></div>
+        <button class="sound-toggle" id="soundToggle">🔊 Sounds on</button>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div><span class="eyebrow" id="todayLabel">YOUR CREATIVE CORNER</span><h1 id="pageTitle">The scrapbook ✿</h1></div>
+        <div class="top-actions">
+          <button class="icon-button" id="randomPrompt" title="Give me a prompt">✨</button>
+          <button class="icon-button" id="stickerToggle" title="Decorate">🌼</button>
+          <button class="avatar top-avatar" id="topAvatar" title="Edit avatar">🐸</button>
+        </div>
+      </header>
+
+      <section class="page active" id="page-home">
+        <div class="welcome-banner">
+          <div class="welcome-copy">
+            <span class="pill">✷ YOUR HAPPY PLACE</span>
+            <h2>Make something<br><em>lovely today.</em></h2>
+            <p>A little yarn, a little imagination, and absolutely no rules.</p>
+            <button class="primary-button" data-go="projects">Explore my projects <span>↗</span></button>
+          </div>
+          <div class="banner-art">
+            <div class="sunburst">✳</div><div class="yarn-ball">🧶</div>
+            <span class="floating-sticker s1">♡</span><span class="floating-sticker s2">✿</span>
+            <span class="floating-sticker s3">✧</span>
+          </div>
+        </div>
+
+        <div class="section-heading"><div><span class="eyebrow">A LITTLE OVERVIEW</span><h2>Your creative chaos</h2></div><span class="hand-note">looking cute already ↗</span></div>
+        <div class="stats-grid">
+          <article class="stat-card pink"><span>🧶</span><small>Active projects</small><strong id="statProjects">0</strong></article>
+          <article class="stat-card yellow"><span>🪡</span><small>Rows completed</small><strong id="statRows">0</strong></article>
+          <article class="stat-card lilac"><span>🌷</span><small>Finished projects</small><strong id="statFinished">0</strong></article>
+          <article class="stat-card mint"><span>⏳</span><small>Crafting minutes</small><strong id="statMinutes">0</strong></article>
+        </div>
+
+        <div class="home-columns">
+          <div class="paper-card project-widget widget" draggable="true" data-widget="projects">
+            <div class="card-heading"><div><span class="eyebrow">CURRENTLY ON MY HOOK</span><h3>My projects</h3></div><button class="text-button" data-go="projects">See all ↗</button></div>
+            <div id="homeProjects" class="mini-project-list"><p class="empty-state">Your next masterpiece goes here. ✨</p></div>
+          </div>
+          <div class="paper-card prompt-widget widget" draggable="true" data-widget="prompt">
+            <span class="eyebrow">TODAY'S CREATIVE SPARK</span>
+            <div class="prompt-spark">✦</div>
+            <h3 id="promptText">Make a tiny crochet creature with a big personality.</h3>
+            <button class="outline-button" id="newPrompt">Another idea, please ↻</button>
+          </div>
+          <div class="paper-card memory-widget widget" draggable="true" data-widget="memory">
+            <div class="card-heading"><div><span class="eyebrow">LITTLE MOMENTS</span><h3>Memory jar</h3></div><span>♡</span></div>
+            <textarea id="memoryInput" placeholder="A tiny win, a funny mistake, a project you're proud of..."></textarea>
+            <button class="primary-button small" id="saveMemory">Save this memory +</button>
+            <div id="memoryList" class="memory-list"></div>
+          </div>
+          <div class="paper-card sticker-widget widget" draggable="true" data-widget="stickers">
+            <span class="eyebrow">DECORATE YOUR SPACE</span><h3>Sticker tray</h3>
+            <p>Tap a sticker to sprinkle it onto your scrapbook.</p>
+            <div class="sticker-tray" id="stickerTray">
+              <button>🌼</button><button>🍓</button><button>🦋</button><button>🎀</button><button>⭐</button><button>🐸</button><button>🍄</button><button>💌</button>
+            </div>
+          </div>
+        </div>
+        <div class="section-heading"><div><span class="eyebrow">YOUR LITTLE GALLERY</span><h2>Project scrapbook</h2></div><button class="text-button" data-go="projects">Add a page +</button></div>
+        <div class="scrapbook-gallery" id="homeGallery"><div class="gallery-placeholder">Your project memories will live here. Take photos as you go! 📸</div></div>
+      </section>
+
+      <section class="page" id="page-projects">
+        <div class="page-intro"><div><span class="eyebrow">THE FUN PART</span><h2>Every project has a story.</h2><p>Keep your works-in-progress, ideas and finished makes together.</p></div><button class="primary-button" id="addProject">＋ New project</button></div>
+        <div class="project-grid" id="projectGrid"></div>
+      </section>
+
+      <section class="page" id="page-counter">
+        <div class="page-intro"><div><span class="eyebrow">KEEP YOUR PLACE</span><h2>Row counter</h2><p>One row at a time. You've got this!</p></div></div>
+        <div class="counter-layout">
+          <div class="paper-card counter-card">
+            <label for="counterProject">Choose a project</label><select id="counterProject"></select>
+            <div class="counter-number" id="rowNumber">0</div><div class="counter-caption">ROWS COMPLETED ✿</div>
+            <div class="counter-controls"><button class="counter-minus" id="rowMinus">−</button><button class="counter-plus" id="rowPlus">＋</button></div>
+            <button class="outline-button" id="resetRows">Reset counter</button>
+          </div>
+          <div class="paper-card repeat-card">
+            <span class="eyebrow">REPEAT TRACKER</span><h3>Pattern repeats</h3>
+            <label>Rows per repeat <input type="number" id="repeatSize" min="1" value="4"></label>
+            <div class="repeat-progress"><div id="repeatFill"></div></div>
+            <p id="repeatLabel">0 of 4 rows in this repeat</p>
+            <button class="outline-button" id="resetRepeat">Reset repeat</button>
+            <hr>
+            <span class="eyebrow">CRAFTING TIMER</span><div class="timer-display" id="timerDisplay">00:00:00</div>
+            <div class="timer-controls"><button class="primary-button small" id="timerStart">Start</button><button class="outline-button" id="timerStop">Pause</button><button class="outline-button" id="timerReset">Reset</button></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="page-patterns">
+        <div class="page-intro"><div><span class="eyebrow">YOUR PATTERN NOTEBOOK</span><h2>Pattern maker</h2><p>Write your own patterns and keep every little detail.</p></div><button class="primary-button" id="addPattern">＋ New pattern</button></div>
+        <div class="paper-card"><div id="patternList" class="pattern-list"></div></div>
+      </section>
+
+      <section class="page" id="page-palette">
+        <div class="page-intro"><div><span class="eyebrow">COLOUR PLAYGROUND</span><h2>Yarn studio 🎨</h2><p>Build palettes, collect colours and dream up your next project.</p></div></div>
+        <div class="palette-layout">
+          <div class="paper-card">
+            <span class="eyebrow">PICK YOUR COLOURS</span><h3>Your yarn palette</h3>
+            <div class="colour-picker-row"><input type="color" id="yarnColour" value="#f2a6b8"><input id="colourName" placeholder="Name this colour"><button class="primary-button small" id="addColour">Add yarn +</button></div>
+            <div class="yarn-palette" id="yarnPalette"></div>
+            <button class="outline-button" id="randomPalette">Surprise me with a palette ✨</button>
+          </div>
+          <div class="paper-card">
+            <span class="eyebrow">YOUR PERSONAL COLLECTION</span><h3>Palette notes</h3>
+            <textarea id="paletteNotes" placeholder="Cream, strawberry pink, butter yellow..."></textarea>
+            <button class="primary-button small" id="savePaletteNotes">Save palette notes</button>
+            <p class="helper-text">Your colours and notes are saved in this browser.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="page-grid">
+        <div class="page-intro"><div><span class="eyebrow">PIXEL BY PIXEL</span><h2>Fillet crochet grid</h2><p>Tap squares to fill them and sketch out a design.</p></div></div>
+        <div class="paper-card">
+          <div class="grid-toolbar"><label>Columns <input type="number" id="gridCols" value="12" min="4" max="30"></label><label>Rows <input type="number" id="gridRows" value="12" min="4" max="30"></label><button class="outline-button" id="resizeGrid">Resize grid</button><button class="outline-button" id="clearGrid">Clear</button></div>
+          <div class="fillet-grid" id="filletGrid"></div>
+          <p class="helper-text">Tip: Filled squares represent solid blocks. Empty squares represent open mesh.</p>
+        </div>
+      </section>
+
+      <section class="page" id="page-tutorials">
+        <div class="page-intro"><div><span class="eyebrow">LEARN SOMETHING NEW</span><h2>Stitch library</h2><p>A little reference shelf for your crochet journey.</p></div></div>
+        <div class="tutorial-grid" id="tutorialGrid"></div>
+      </section>
+
+      <section class="page" id="page-wishlist">
+        <div class="page-intro"><div><span class="eyebrow">FOR FUTURE YOU</span><h2>Yarn & tools wishlist</h2><p>Keep track of supplies you'd love to try.</p></div></div>
+        <div class="paper-card wishlist-form"><input id="wishInput" placeholder="What are you dreaming of?"><button class="primary-button" id="addWish">Add to wishlist +</button></div>
+        <div id="wishlistItems" class="wishlist-grid"></div>
+      </section>
+
+      <section class="page" id="page-calendar">
+        <div class="page-intro"><div><span class="eyebrow">THE DAYS YOU MADE THINGS</span><h2>Memories calendar</h2><p>Celebrate the little milestones and finished projects.</p></div></div>
+        <div class="paper-card calendar-card"><div class="calendar-head"><button id="prevMonth">←</button><h3 id="monthLabel"></h3><button id="nextMonth">→</button></div><div class="calendar-grid" id="calendarGrid"></div></div>
+        <div class="paper-card photo-memories"><span class="eyebrow">PHOTO MEMORIES</span><h3>Your scrapbook pages</h3><label class="upload-button">＋ Add photos<input type="file" id="memoryPhotos" accept="image/*" multiple hidden></label><div id="photoGallery" class="photo-gallery"></div></div>
+      </section>
+
+      <section class="page" id="page-settings">
+        <div class="page-intro"><div><span class="eyebrow">MAKE YOURSELF AT HOME</span><h2>Your space, your rules.</h2><p>Customise your little corner of the crochet universe.</p></div></div>
+        <div class="settings-grid">
+          <div class="paper-card"><span class="eyebrow">YOUR PROFILE</span><h3>Who's crafting?</h3><label>Display name<input id="nameSetting" placeholder="Your crafty name"></label><label>Choose an avatar<select id="avatarSetting"><option>🐸</option><option>🐱</option><option>🐻</option><option>🐰</option><option>🦊</option><option>🐼</option><option>🐨</option><option>🦋</option><option>🍓</option><option>🌷</option></select></label><button class="primary-button small" id="saveProfile">Save profile</button></div>
+          <div class="paper-card"><span class="eyebrow">YOUR COLOUR STORY</span><h3>Pick a theme</h3><div class="theme-options"><button data-theme="sage">🌿 Sage garden</button><button data-theme="berry">🍓 Berry pop</button><button data-theme="lavender">💜 Lavender haze</button><button data-theme="sunshine">☀️ Sunshine</button><button data-theme="custom">🎨 Custom</button></div><label>Custom accent colour<input type="color" id="customAccent" value="#ee8ba7"></label></div>
+          <div class="paper-card"><span class="eyebrow">A LITTLE ATMOSPHERE</span><h3>Play & sparkle</h3><label class="toggle-line"><span>Dark mode</span><input type="checkbox" id="darkMode"></label><label class="toggle-line"><span>Sound effects</span><input type="checkbox" id="soundSetting" checked></label><label class="toggle-line"><span>Animations</span><input type="checkbox" id="animationSetting" checked></label></div>
+          <div class="paper-card"><span class="eyebrow">YOUR DATA</span><h3>Keep your memories safe</h3><p class="helper-text">Export a backup of your projects, notes and settings. Import it later in this browser.</p><button class="primary-button small" id="exportData">Download backup</button><label class="upload-button">Import backup<input type="file" id="importData" accept=".json,application/json" hidden></label></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="sticker-float-layer" id="stickerLayer"></div>
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal-card" id="modalCard"><button class="modal-close" id="modalClose">×</button><div id="modalContent"></div></div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
